@@ -9,13 +9,13 @@ RUN apk add --no-cache --update \
       bash-completion \
       grep \
       tree \
-      ssh  \
+      openssh-client  \
       # MySQL, PostgreSQL, etc
       mysql-client \
       postgresql-client \ 
       # Interacting with the networks
       curl \
-      bind-tools \ # To use dig command 
+      bind-tools \
       wget \
       jq \
       nmap \

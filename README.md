@@ -5,11 +5,14 @@ This is tiny container (Alpine) used to debug or troubleshoot infrastructure iss
 ## How to run it inside a Kubernetes Cluster?
 
 ```bash
-kubectl run my-toolbox --rm -i --tty --image mogaal/toolbox -- bash
+$ kubectl run my-toolbox --rm -i --tty --image mogaal/toolbox -- bash
 root@my-toolbox-f6f884878-7vqj8:~# nc -v 100.67.251.4 80
 wp-wp-ume.wp-ume.svc.cluster.local [100.67.251.4] 80 (http) open
 ^C
 root@my-toolbox-f6f884878-7vqj8:~# exit
+Session ended, resume using 'kubectl attach my-toolbox-f6f884878-7vqj8 -c my-toolbox -i -t' command when the pod is running
+deployment.apps "my-toolbox" deleted
+$ 
 ```
 
 If you want to run it within determined namespace just add `-n $namespace` to the `kubectl` command.

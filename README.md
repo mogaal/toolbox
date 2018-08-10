@@ -5,7 +5,7 @@ This is tiny container (Alpine) used to debug or troubleshoot infrastructure iss
 ## How to run it inside a Kubernetes Cluster?
 
 ```bash
-$ kubectl run my-toolbox --rm -i --tty --image mogaal/toolbox -- bash
+$ kubectl run my-toolbox --rm -i --tty --image mogaal/toolbox
 root@my-toolbox-f6f884878-7vqj8:~# nc -v 100.67.251.4 80
 wp-wp-ume.wp-ume.svc.cluster.local [100.67.251.4] 80 (http) open
 ^C

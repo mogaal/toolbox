@@ -10,5 +10,8 @@ build: Dockerfile
 
 push:
 	docker push $(NS)/$(IMAGE_NAME):$(VERSION)
+
+run:
+	docker run -it $(NS)/$(IMAGE_NAME):$(VERSION)
     
 default: build

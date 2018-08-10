@@ -6,6 +6,7 @@ ENV LANG C.UTF-8
 # We add the basics
 RUN apk add --no-cache --update \
       bash \
+      util-linux \
       bash-completion \
       grep \
       tree \
@@ -30,4 +31,4 @@ RUN apk add --no-cache --update \
     && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["bash"] 
+ENTRYPOINT ["/bin/bash"] 

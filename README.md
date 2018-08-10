@@ -1,6 +1,6 @@
 # Alpine docker container to troubleshoot infrastructure issues
 
-This is tiny container (Alpine) used to debug or troubleshoot infrastructure issues within kubewrnetes clusters. It include tools like mysql and postgreSQL clients to make database connections.
+This is tiny container (Alpine) used to debug or troubleshoot infrastructure issues within kubewrnetes clusters. It include tools like MySQL and postgreSQL clients to make database connections.
 
 ## How to run it inside a Kubernetes Cluster?
 

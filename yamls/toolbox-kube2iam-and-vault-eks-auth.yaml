@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: my-toolbox
+  name: my-toolbox
+  namespace: default
+  annotations:
+        iam.amazonaws.com/role: arn:aws:iam::XXXXXXXXXXXXX:role/${cluster_name}-kube2iam-s3-consul-backups
+spec:
+  securityContext:
+    runAsUser: 1001
+    fsGroup: 1001
+
+  volumes:
+  - name: vault-auth
+    emptyDir:
+      medium: Memory
+  - name: vault-secrets
+    emptyDir:
+      medium: Memory
+
+  initContainers:
+  - name: vault-authenticator
+    image: sethvargo/vault-kubernetes-authenticator:0.2.0
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: vault-auth
+      mountPath: /var/run/secrets/vaultproject.io
+    env:
+    - name: VAULT_ROLE
+      value: default
+    - name: VAULT_ADDR
+      value: 'http://vault-vault.inf:8200'
+    securityContext:
+      allowPrivilegeEscalation: false
+
+  containers:
+  - image: mogaal/toolbox
+    imagePullPolicy: Always
+    name: my-toolbox
+    tty: true
+    volumeMounts:
+    - name: vault-auth
+      mountPath: /home/vault
+    - name: vault-secrets
+      mountPath: /var/run/secrets/vaultproject.io
+    env:
+    - name: HOME
+      value: /home/vault
+
